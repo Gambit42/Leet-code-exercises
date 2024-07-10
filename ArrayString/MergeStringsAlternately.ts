@@ -7,6 +7,7 @@ const handleConvertToArray = (word: string) => {
 };
 
 const handleMergeStringsAlternately = (word1: string, word2: string) => {
+  if (1 > word1.length || word2.length > 100) return;
   let mergedArray = [] as string[];
   const WORD_1_ARRAY = handleConvertToArray(word1);
   const WORD_2_ARRAY = handleConvertToArray(word2);
@@ -79,3 +80,8 @@ handleMergeStringsAlternately("ab", "pqrd");
 // merged: a p b q c   d
 
 handleMergeStringsAlternately("abcd", "pq");
+
+// Constraints:
+
+// 1 <= word1.length, word2.length <= 100
+// word1 and word2 consist of lowercase English letters.
