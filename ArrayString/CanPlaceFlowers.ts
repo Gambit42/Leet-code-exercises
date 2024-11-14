@@ -19,19 +19,29 @@ const canPlaceFlowers = (
     const isLastFlowerBedEmpty =
       currentFlowerbed[currentFlowerbed.length - 1] === 0;
 
+    if (currentFlowerbed.length === 1 && flower === 0) {
+      //If its the only one in the array and not planted, plant
+      flowersPlanted += 1;
+      return newFlowerbed.push(1);
+    }
+
     if (isFlowerbedPlanted) {
       //If already planted just return planted
       return newFlowerbed.push(1);
     }
 
-    if (isLastFlowerBedEmpty && isPreviousFlowerBedEmpty) {
-      //If last flowerbed is empty and previous one is empty as well meaning we can plant on the last flowerbed
+    if (index === 0 && isNextFlowerBedEmpty) {
+      //If first index has no planted or first item no planted and so is the next item, plant one flower
       flowersPlanted += 1;
       return newFlowerbed.push(1);
     }
 
-    if (index === 0 && isNextFlowerBedEmpty) {
-      //If first index has no planted or first item no planted and so is the next item, plant one flower
+    if (
+      index === currentFlowerbed.length - 1 &&
+      isLastFlowerBedEmpty &&
+      isPreviousFlowerBedEmpty
+    ) {
+      //if last item, and previous and current flowerbed is empty, plant
       flowersPlanted += 1;
       return newFlowerbed.push(1);
     }
@@ -45,6 +55,9 @@ const canPlaceFlowers = (
     return newFlowerbed.push(0);
   });
 
+  console.log("CURRENT", currentFlowerbed);
+  console.log("NEW FLOWER BED", newFlowerbed);
+
   if (flowersPlanted < numberOfFlowersToPlace) {
     return false;
   }
@@ -52,6 +65,7 @@ const canPlaceFlowers = (
   return true;
 };
 
-console.log(canPlaceFlowers([0, 0, 1, 0, 0], 1));
+console.log(canPlaceFlowers([1, 0, 1, 0, 0, 1, 0], 1));
+console.log(canPlaceFlowers([1, 0, 0, 0, 1, 0, 0], 2));
 console.log(canPlaceFlowers([1, 0, 0, 0, 1], 1));
 console.log(canPlaceFlowers([1, 0, 0, 0, 1], 2));
