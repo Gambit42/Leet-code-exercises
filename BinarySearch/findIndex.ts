@@ -12,20 +12,24 @@ const handleBinarySearch = (array: string[], target: string) => {
   let high = array.length - 1; //last index
 
   while (low <= high) {
+    //Find the middle
     let middle = Math.floor(low + (high - low) / 2);
     let middleValue = array[middle];
 
-    //go right
+    //Go right
     if (middleValue < target) {
       low = middle + 1;
     }
-    //go left
+
     if (middleValue > target) {
       high = middle - 1;
     }
 
-    if (middleValue === target) return middle;
+    if (middleValue === target) {
+      return middle;
+    }
   }
+
   return -1;
 };
 
